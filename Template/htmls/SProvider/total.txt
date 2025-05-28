@@ -1,0 +1,960 @@
+{% extends 'SProvider/design1.html' %}
+{% block researchblock %}
+
+<style>
+    body{
+	background-color: #FFFFFF;
+    }
+    .menu table{
+        width:100%;
+        text-align:center;
+
+    }
+
+    .menu table td:hover{
+         background:rgb(0,0,0);
+    }
+
+     .menu table td{
+          background: #584b4f;
+     }
+
+     .menu table,.menu table th,.menu table td {
+          border: ;
+          border-collapse: collapse;
+     }
+
+     .menu table th,.menu table  td {
+          padding: 15px;
+     }
+     .topic h1{
+           color:white;
+           padding:2px;
+           text-align:center;
+           border-style:none;
+           height:100px;
+           width:1330px;
+           float:left;
+     }
+     #chartContainer{
+            width: 1180px;
+            margin-left: 250px;
+            margin-top: -354px;
+            position: fixed;
+     }
+     .sidemenu{
+     margin-top: 118px;
+     }
+</style>
+
+
+<script >
+window.onload = function() {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: ""
+	},
+	data: [{
+	{% if chart_type == "line" %}
+		type: "line",
+	{% elif chart_type == "pie" %}
+		type: "pie",
+	{% elif chart_type == "spline" %}
+		type: "spline",
+	{% endif %}
+		startAngle: 240,
+		yValueFormatString: "##0.00\"%\"",
+		indexLabel: "{label} {y}",
+		dataPoints: [
+		{% for o in form %}
+			{y: {{o.dcount}}, label: "{{o.names}}"},
+		{% endfor %}
+		]
+	}]
+});
+chart.render();
+
+}
+
+</script>
+<body>
+<br>
+<div class="topic">
+
+
+
+<div class="sidemenu">
+    <h3 style="color:black;margin-left:60px;margin-top:80px"><a href="{% url 'charts' 'pie' %}" >PIE CHAERT<br>
+        <br>
+        <br>
+        <br>
+      <br>
+     </a><a href="{% url 'charts' 'line' %}">LINE CHART</a></h3>
+    <h3 style="color:white;margin-left:60px;margin-top:100px;"><a href="{% url 'charts' 'spline' %}"></a></h3>
+</div>
+<div id="chartContainer" class="graph"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</div>
+
+</body>
+{% endblock %}{% extends 'SProvider/design1.html' %}
+{% block researchblock %}
+
+<style>
+    body{
+	background-color: #FFFFFF;
+    }
+    .menu table{
+        width:100%;
+        text-align:center;
+
+    }
+
+    .menu table td:hover{
+         background:rgb(0,0,0);
+    }
+
+     .menu table td{
+          background: #584b4f;
+     }
+
+     .menu table,.menu table th,.menu table td {
+          border: ;
+          border-collapse: collapse;
+     }
+
+     .menu table th,.menu table  td {
+          padding: 15px;
+     }
+     .topic h1{
+           color:white;
+           padding:2px;
+           text-align:center;
+           border-style:none;
+           height:100px;
+           width:1330px;
+           float:left;
+     }
+     #chartContainer{
+            width: 1180px;
+            margin-left: 205px;
+            margin-top: -354px;
+            position: fixed;
+     }
+     .sidemenu{
+     margin-top: 118px;
+     }
+</style>
+
+
+<script>
+window.onload = function() {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: ""
+	},
+	data: [{
+	{% if chart_type == "line" %}
+		type: "line",
+	{% elif chart_type == "pie" %}
+		type: "pie",
+	{% elif chart_type == "spline" %}
+		type: "spline",
+	{% endif %}
+		startAngle: 240,
+		yValueFormatString: "##0.00\"%\"",
+		indexLabel: "{label} {y}",
+		dataPoints: [
+		{% for o in form %}
+			{y: {{o.dcount}}, label: "{{o.names}}"},
+		{% endfor %}
+		]
+	}]
+});
+chart.render();
+
+}
+
+</script>
+<body>
+<br>
+<div class="topic">
+
+
+
+<div class="sidemenu">
+    <h3 style="color:black;margin-left:60px;margin-top:80px"><a href="{% url 'charts1' 'pie' %}" >PIE CHAERT<br>
+        <br>
+        <br>
+        <br>
+      <br>
+     </a><a href="{% url 'charts1' 'line' %}">LINE CHART</a></h3>
+    <h3 style="color:white;margin-left:60px;margin-top:100px;"><a href="{% url 'charts1' 'spline' %}"></a></h3>
+</div>
+<div id="chartContainer" class="graph"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</div>
+
+</body>
+{% endblock %}<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Service Provider</title>
+<link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+<style>
+    body{background: url("{% static 'bg.jpg' %}");
+	background-size:cover;
+	font-family: 'Russo One', sans-serif;
+	background-color: #000000;
+    }
+    h1{
+    color:white;
+    }
+.topnav {
+  overflow: hidden;
+  background-color: #812;
+}
+
+.topnav a {
+  float: left;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #8e4fd1;
+  color: white;
+}
+.style1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body>
+
+<h1 align="center" class="style1">Hybrid Machine Learning Approach For Cyberattack Correlation and Mitigation inDistribution Systems</h1>
+
+<div  class="topnav">
+
+    <a href="{% url 'train_model' %}">Browse Data Sets and Train & Test </a>
+    <a href="{% url 'likeschart' 'bar' %}">View  Trained and Tested Accuracy in Bar Chart </a>
+    <a href="{% url 'charts1' 'line' %}"> View Trained and Tested Accuracy Results </a>
+    <a  href="{% url 'View_Prediction_Of_IOTMessage_Type' %}">View Prediction Of Cyber Attack Type</a>
+    <a href="{% url 'View_IOTMessage_Type_Ratio' %}">View Cyber Attack Type Ratio </a>
+    <a href="{% url 'Download_Trained_DataSets' %}">Download Cyber Attack Predicted Data Sets</a>
+    <a href="{% url 'charts' 'line' %}">View Cyber Attack Type Ratio Results </a>
+    <a href="{% url 'View_Remote_Users' %}">View All Remote Users</a>
+    <a href="{% url 'login'  %}">Logout</a>
+
+</div>
+
+
+
+<div class="mainholder">
+{% block researchblock %}
+{% endblock %}
+</div>
+</body>
+</html>{% extends 'SProvider/design1.html' %}
+{% block researchblock %}
+
+<style>
+    body{
+	background-color: #FFFFFF;
+    }
+    .menu table{
+        width:100%;
+        text-align:center;
+
+    }
+
+    .menu table td:hover{
+         background:rgb(0,0,0);
+    }
+
+     .menu table td{
+          background: #584b4f;
+     }
+
+     .menu table,.menu table th,.menu table td {
+          border: ;
+          border-collapse: collapse;
+     }
+
+     .menu table th,.menu table  td {
+          padding: 15px;
+     }
+     .topic h1{
+           color:white;
+           padding:2px;
+           text-align:center;
+           border-style:none;
+           height:100px;
+           width:1330px;
+           float:left;
+     }
+     #chartContainer{
+            width: 900px;
+            margin-left: 365px;
+            margin-top: -354px;
+            position: fixed;
+     }
+     .sidemenu{
+     margin-top: 118px;
+     }
+</style>
+
+
+<script>
+window.onload = function() {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: ""
+	},
+	data: [{
+	{% if dislike_chart == "bar" %}
+		type: "bar",
+	{% elif dislike_chart == "pie" %}
+		type: "pie",
+	{% elif dislike_chart == "spline" %}
+		type: "spline",
+	{% endif %}
+		startAngle: 240,
+		yValueFormatString: "##0.00\"%\"",
+		indexLabel: "{label} {y}",
+		dataPoints: [
+		{% for o in form %}
+			{y: {{o.dcount}}, label: "{{o.names}}"},
+		{% endfor %}
+		]
+	}]
+});
+chart.render();
+
+}
+
+</script>
+<body>
+<br>
+<div class="topic">
+
+
+
+<div class="sidemenu">
+    <h3 style="color:black;margin-left:60px;margin-top:80px"><a href="{% url 'dislikeschart' 'pie' %}" >PIE CHAERT<br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </a><a href="{% url 'dislikeschart' 'bar' %}">BAR CHART</a></h3>
+    <h3 style="color:white;margin-left:60px;margin-top:100px;"><a href="{% url 'dislikeschart' 'coloumn' %}"></a></h3>
+</div>
+<div id="chartContainer" class="graph"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</div>
+
+</body>
+{% endblock %}{% extends 'SProvider/design1.html' %}
+{% block researchblock %}
+
+
+<link rel="icon" href="images/icon.png" type="image/x-icon" />
+
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+
+
+
+		<style>
+			body {background-color:#000000;}
+			.container-fluid {padding:50px;}
+			.container{background-color:white;padding:50px;   }
+			#title{font-family: 'Fredoka One', cursive;
+}
+			.text-uppercase{
+			font-family: 'Righteous', cursive;
+
+			}
+			.tweettext{
+
+    border: 2px solid yellowgreen;
+    width: 1104px;
+    height: 442px;
+    overflow: scroll;
+    background-color:;
+}
+		.style1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+.style4 {color: #FFFF00; font-weight: bold; }
+        .style5 {color: #FFFF00}
+        </style>
+
+	<body>
+	<div class="container-fluid">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-md-5">
+ 					<form role="form" method="POST" >
+						{% csrf_token %}
+						<fieldset>
+							<p class="text-uppercase pull-center style1">  !!! </p>
+                            <hr>
+                            <div class="tweettext">
+
+                            </div>
+
+
+
+
+						</fieldset>
+					</form>
+				</div>
+
+				<div class="col-md-2">
+					<!-------null------>
+				</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+    <tr>{% extends 'SProvider/design1.html' %}
+{% block researchblock %}
+
+<style>
+    body{
+	background-color: #FFFFFF;
+    }
+    .menu table{
+        width:100%;
+        text-align:center;
+
+    }
+
+    .menu table td:hover{
+         background:rgb(0,0,0);
+    }
+
+     .menu table td{
+          background: #584b4f;
+     }
+
+     .menu table,.menu table th,.menu table td {
+          border: ;
+          border-collapse: collapse;
+     }
+
+     .menu table th,.menu table  td {
+          padding: 15px;
+     }
+     .topic h1{
+           color:white;
+           padding:2px;
+           text-align:center;
+           border-style:none;
+           height:100px;
+           width:1330px;
+           float:left;
+     }
+     #chartContainer{
+            width: 1020px;
+            margin-left: 150px;
+            margin-top: -354px;
+            position: fixed;
+     }
+     .sidemenu{
+     margin-top: 118px;
+     }
+</style>
+
+
+<script>
+window.onload = function() {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: ""
+	},
+	data: [{
+	{% if chart_type == "rangeSplineArea" %}
+		type: "rangeSplineArea",
+	{% elif chart_type == "pie" %}
+		type: "pie",
+	{% elif chart_type == "spline" %}
+		type: "spline",
+	{% endif %}
+		startAngle: 240,
+		yValueFormatString: "##0.00\"%\"",
+		indexLabel: "{label} {y}",
+		dataPoints: [
+		{% for o in form %}
+			{y: {{o.dcount}}, label: "{{o.names}}"},
+		{% endfor %}
+		]
+	}]
+});
+chart.render();
+
+}
+
+</script>
+<body>
+<br>
+<div class="topic">
+
+
+
+<div class="sidemenu">
+    
+	
+    <h3 style="color:white;margin-left:60px;margin-top:100px;">&nbsp;</h3>
+    <h3 style="color:white;margin-left:60px;margin-top:100px;"><br>
+      <br>
+      <br>
+	  <br>
+    <a href="{% url 'likeschart' 'bar' %}"></a></h3>
+  </div>
+<div id="chartContainer" class="graph"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</div>
+
+</body>
+{% endblock %}<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<title>Login</title>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<head>
+
+<link rel="icon" href="images/icon.png" type="image/x-icon" />
+
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+
+
+
+		<style>
+			body {background: url("{% static 'bg.jpg' %}");
+			background-color:#eee;}
+			.container-fluid {padding:50px;}
+			.container{background-color:white;padding:50px;   }
+			#title{font-family: 'Fredoka One', cursive;
+}
+			.text-uppercase{
+			font-family: 'Righteous', cursive;
+
+			}
+		.style1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+        .style2 {
+	font-family: 'Righteous', cursive;
+	color: #FF0000;
+	font-weight: bold;
+}
+.style5 {
+	color: #FF0099;
+	font-weight: bold;
+}
+        </style>
+	</head>
+	<body>
+	<div class="container-fluid">
+		<div>
+			<h2 class="text-center style1" id="title">Hybrid Machine Learning Approach For Cyberattack Correlation and Mitigation inDistribution Systems</h2>
+			 <p class="text-center"> <span class="style5"><small id="passwordHelpInline" class="text-muted">Cyber Resilience Detection
+
+
+
+          </small></span> </p>
+ 			<hr>
+			<div class="row">
+
+
+				<div class="col-md-2">
+					<!-------null------>
+				</div>
+
+				<div class="col-md-5">
+ 				 		<form method="POST" role="form">
+							{% csrf_token %}
+
+						<fieldset>
+                             {% load static %}
+						<img src="{% static '/login.jpg' %}" alt="My image">
+							<p class="style2"> Login Service Provider: </p>
+
+							<div class="form-group">
+								<input type="text" name="username"   placeholder="User Name" required>
+							</div>
+							<div class="form-group">
+								<input type="password" name="password"   placeholder="Password" required>
+							</div>
+							<div>
+								<input type="submit" name="submit1"  class="btn btn-md" value="Login">
+							</div>
+ 						</fieldset>
+						<br><br>
+						<button class="btn btn-lg "><a href="{% url 'login' %}">User Login</a></button> 
+				</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	</body>
+
+
+</html>{% extends 'SProvider/design1.html' %}
+{% block researchblock %}
+
+
+<link rel="icon" href="images/icon.png" type="image/x-icon" />
+
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+
+
+
+		<style>
+			body {background-color:#000000;}
+			.container-fluid {padding:50px;}
+			.container{background-color:white;padding:50px;   }
+			#title{font-family: 'Fredoka One', cursive;
+}
+			.text-uppercase{
+			font-family: 'Righteous', cursive;
+
+			}
+			.tweettext{
+
+    border: 2px solid yellowgreen;
+    width: 1104px;
+    height: 442px;
+    overflow: scroll;
+    background-color:;
+}
+		.style1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+.style7 {color: #FFFF00}
+        </style>
+
+	<body>
+	<div class="container-fluid">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-md-5">
+
+
+
+ 					<form role="form" method="POST" >
+						{% csrf_token %}
+						<fieldset>
+                            <p align="center" class="text-uppercase pull-center style1">View Cyber Attack Datasets Trained and Tested Results</p>
+
+                            <hr>
+                            <div>
+                               <table border="5" align="center" bordercolor="#FF00FF">
+                      <tr><td bgcolor="#FF0000"><div align="center"><span class="style10 style7">Model Type</span></div></td>
+                          <td bgcolor="#FF0000"><div align="center"><span class="style10 style7">Accuracy</span></div></td>
+                      </tr>
+                            {% for object in objs %}
+                      <tr>
+                                        <td bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="center">{{object.names}}</div></td>
+                                        <td bgcolor="#FF0000" style="font-family:monospace; font-size:19px; "><div align="center" class="style9"><span class="style7">{{object.ratio}}</span></div></td>
+                                 </tr>
+
+                                        {% endfor %}
+                      </table>
+
+
+
+                            </div>
+
+
+
+
+						</fieldset>
+					</form>
+				</div>
+
+				<div class="col-md-2">
+					<!-------null------>
+				</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+    <tr>{% extends 'SProvider/design1.html' %}
+{% block researchblock %}
+
+
+<link rel="icon" href="images/icon.png" type="image/x-icon" />
+
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+
+
+
+		<style>
+			body {background-color:#000000;}
+			.container-fluid {padding:50px;}
+			.container{background-color:white;padding:50px;   }
+			#title{font-family: 'Fredoka One', cursive;
+}
+			.text-uppercase{
+			font-family: 'Righteous', cursive;
+
+			}
+			.tweettext{
+
+    border: 2px solid yellowgreen;
+    width: 1104px;
+    height: 442px;
+    overflow: scroll;
+    background-color:;
+}
+		.style1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+.style7 {color: #FFFF00}
+        </style>
+
+	<body>
+	<div class="container-fluid">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-md-5">
+
+
+
+ 					<form role="form" method="POST" >
+						{% csrf_token %}
+						<fieldset>
+                            <p align="center" class="text-uppercase pull-center style1">View Cyber Attack Type Found Ratio Details</p>
+                            <hr>
+                            <div>
+                               <table border="5" align="center" bordercolor="#FF00FF">
+                      <tr><td bgcolor="#FF0000"><div align="center"><span class="style10 style7">Cyber Attack Type</span></div></td>
+                          <td bgcolor="#FF0000"><div align="center"><span class="style10 style7">Ratio</span></div></td>
+                      </tr>
+                            {% for object in objs %}
+                      <tr>
+                                        <td bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="center">{{object.names}}</div></td>
+                                        <td bgcolor="#FF0000" style="font-family:monospace; font-size:19px; "><div align="center" class="style9"><span class="style7">{{object.ratio}}</span></div></td>
+                                 </tr>
+
+                                        {% endfor %}
+                      </table>
+
+
+
+                            </div>
+
+
+
+
+						</fieldset>
+					</form>
+				</div>
+
+				<div class="col-md-2">
+					<!-------null------>
+				</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+    <tr>{% extends 'SProvider/design1.html' %}
+{% block researchblock %}
+
+
+<link rel="icon" href="images/icon.png" type="image/x-icon" />
+
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+
+
+
+		<style>
+			body {background-color:#000000;}
+			.container-fluid {padding:50px;}
+			.container{background-color:white;padding:50px;   }
+			#title{font-family: 'Fredoka One', cursive;
+}
+			.text-uppercase{
+			font-family: 'Righteous', cursive;
+
+			}
+			.tweettext{
+
+    border: 2px solid yellowgreen;
+    width: 1104px;
+    height: 442px;
+    overflow: scroll;
+    background-color:;
+}
+		.style1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+.style12 {color: #FFFF00; font-weight: bold; }
+        </style>
+
+	<body>
+	<div class="container-fluid">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-md-5">
+ 					<form role="form" method="POST" >
+						{% csrf_token %}
+						<fieldset>
+							<p align="center" class="text-uppercase pull-center style1">View Cyber Attack Prediction Type Details  !!! </p>
+                            <hr>
+                            <div >
+                               <table width="739" border="5" align="center" bordercolor="#FF00FF">
+                               <tr><td width="366" bgcolor="#FF0000"><div align="center" class="style12"><span class="style8 style6">Cyber Attack Id</span></div></td>
+                                   <td width="366" bgcolor="#FF0000"><div align="center" class="style12"><span class="style8 style6">Cyber Attack Date</span></div></td>
+                                   <td width="366" bgcolor="#FF0000"><div align="center" class="style12"><span class="style8 style6">Cyber Attack</span></div></td>
+                                   <td width="366" bgcolor="#FF0000"><div align="center" class="style12"><span class="style8 style6">Prediction</span></div></td>
+
+                      </tr>
+                            {% for object in list_objects %}
+                      <tr>
+                          <td bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="left">{{object.Message_Id}}</div></td>
+                           <td bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="left">{{object.Message_Date}}</div></td>
+                           <td bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="left"><textarea cols="25" rows="13">{{object.IOT_Message}}</textarea>
+                           </div></td>
+                          <td bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="center">{{object.Prediction}}</div></td>
+                        </tr>
+
+                                        {% endfor %}
+                      </table>
+
+                            </div>
+
+
+
+
+						</fieldset>
+					</form>
+				</div>
+
+				<div class="col-md-2">
+					<!-------null------>
+				</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+    <tr>{% extends 'SProvider/design1.html' %}
+{% block researchblock %}
+
+<link rel="icon" href="images/icon.png" type="image/x-icon" />
+
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+
+
+
+		<style>
+			body {background-color:#000000;}
+			.container-fluid {padding:50px;}
+			.container{background-color:white;padding:50px;   }
+			#title{font-family: 'Fredoka One', cursive;
+}
+			.text-uppercase{
+			font-family: 'Righteous', cursive;
+
+			}
+			input{
+			font-family:'Russo One', sans-serif;
+			font-size:15px;
+			}
+
+		.style1 {color: #FF0000}
+        </style>
+
+	<body>
+	<div class="container-fluid">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-md-5">
+ 					<form role="form" method="POST" >
+						{% csrf_token %}
+						<fieldset>
+							<p class="text-uppercase pull-center style1">VIEW ALL REMOTE USERS !!! </p>
+                            <div class="viewclients">
+							  <table>
+								<tr>
+									<th bgcolor="#FF0000" style="color:yellow">USER NAME</th>
+									<th bgcolor="#FF0000" style="color:yellow">EMAIL</th>
+									<th bgcolor="#FF0000" style="color:yellow">Mob No</th>
+									<th bgcolor="#FF0000" style="color:yellow">Country</th>
+									<th bgcolor="#FF0000" style="color:yellow">State</th>
+									<th bgcolor="#FF0000" style="color:yellow">City</th>
+								</tr>
+								<tr>
+								{% for o in objects %}
+									<td bgcolor="#FFFFFF" style="color:white"><span class="style1">{{o.username}}</span></td>
+									<td bgcolor="#FFFFFF" style="color:white"><span class="style1">{{o.email}}</span></td>
+									<td bgcolor="#FFFFFF" style="color:white"><span class="style1">{{o.phoneno}}</span></td>
+									<td bgcolor="#FFFFFF" style="color:white"><span class="style1">{{o.country}}</span></td>
+									<td bgcolor="#FFFFFF" style="color:white"><span class="style1">{{o.state}}</span></td>
+									<td bgcolor="#FFFFFF" style="color:white"><span class="style1">{{o.city}}</span></td>
+								</tr>
+								{% endfor %}
+							</table>
+
+						</div>
+					  </fieldset>
+					</form>
+				</div>
+
+				<div class="col-md-2">
+					<!-------null------>
+				</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
