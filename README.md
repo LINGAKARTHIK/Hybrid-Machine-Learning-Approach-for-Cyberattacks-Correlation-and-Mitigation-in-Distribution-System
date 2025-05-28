@@ -33,7 +33,7 @@ Uses [Insert Dataset Name, e.g., NSL-KDD or custom simulated dataset].
 ** How to Run**
 
 Clone the repo:
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/LINGAKARTHIK/Hybrid-Machine-Learning-Approach-for-Cyberattacks-Correlation-and-Mitigation-in-Distribution-System
 cd your-repo-name
 Install dependencies:
 
@@ -42,7 +42,8 @@ pip install -r requirements.txt
 Run the main script:
 
 
-python main.py
+python manage.py runserver
+
  Output
 Attack detection logs
 
